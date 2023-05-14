@@ -2,8 +2,17 @@
 
 # Portfolio Site 1.5
 
-Portfolio built with an existing template.
+Portfolio built with an existing template that I edited.
 [Template Here](https://bootstrapmade.com/free-html-bootstrap-template-my-resume/)
+
+## Major Funtions
+
+- contact page to get in touch with me
+- shows off any projects and experience I have
+
+## Dependencies
+
+None as this website uses plain html, css, javascript, php
 
 ## Demo
 
