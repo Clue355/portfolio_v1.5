@@ -27,6 +27,8 @@
 
 .top-spacing {
     margin-top: 2rem;
+    font-weight: bold;
+    text-decoration: underline;
 }
 
 @media screen and (max-width: 1439px) {
