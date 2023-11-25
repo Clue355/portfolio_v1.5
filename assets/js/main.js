@@ -1,275 +1,117 @@
-/**
- * Template Name: MyResume - v4.6.0
- * Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
- * Author: BootstrapMade.com
- * License: https://bootstrapmade.com/license/
- */
-;(function () {
-  'use strict'
+/*
+	Strata by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
 
-  /**
-   * Easy selector helper function
-   */
-  const select = (el, all = false) => {
-    el = el.trim()
-    if (all) {
-      return [...document.querySelectorAll(el)]
-    } else {
-      return document.querySelector(el)
-    }
-  }
+(function($) {
 
-  /**
-   * Easy event listener function
-   */
-  const on = (type, el, listener, all = false) => {
-    let selectEl = select(el, all)
-    if (selectEl) {
-      if (all) {
-        selectEl.forEach(e => e.addEventListener(type, listener))
-      } else {
-        selectEl.addEventListener(type, listener)
-      }
-    }
-  }
+	var $window = $(window),
+		$body = $('body'),
+		$header = $('#header'),
+		$footer = $('#footer'),
+		$main = $('#main'),
+		settings = {
 
-  /**
-   * Easy on scroll event listener
-   */
-  const onscroll = (el, listener) => {
-    el.addEventListener('scroll', listener)
-  }
+			// Parallax background effect?
+				parallax: true,
 
-  /**
-   * Navbar links active state on scroll
-   */
-  let navbarlinks = select('#navbar .scrollto', true)
-  const navbarlinksActive = () => {
-    let position = window.scrollY + 200
-    navbarlinks.forEach(navbarlink => {
-      if (!navbarlink.hash) return
-      let section = select(navbarlink.hash)
-      if (!section) return
-      if (
-        position >= section.offsetTop &&
-        position <= section.offsetTop + section.offsetHeight
-      ) {
-        navbarlink.classList.add('active')
-      } else {
-        navbarlink.classList.remove('active')
-      }
-    })
-  }
-  window.addEventListener('load', navbarlinksActive)
-  onscroll(document, navbarlinksActive)
+			// Parallax factor (lower = more intense, higher = less intense).
+				parallaxFactor: 20
 
-  /**
-   * Scrolls to an element with header offset
-   */
-  const scrollto = el => {
-    let elementPos = select(el).offsetTop
-    window.scrollTo({
-      top: elementPos,
-      behavior: 'smooth'
-    })
-  }
+		};
 
-  /**
-   * Back to top button
-   */
-  let backtotop = select('.back-to-top')
-  if (backtotop) {
-    const toggleBacktotop = () => {
-      if (window.scrollY > 100) {
-        backtotop.classList.add('active')
-      } else {
-        backtotop.classList.remove('active')
-      }
-    }
-    window.addEventListener('load', toggleBacktotop)
-    onscroll(document, toggleBacktotop)
-  }
+	// Breakpoints.
+		breakpoints({
+			xlarge:  [ '1281px',  '1800px' ],
+			large:   [ '981px',   '1280px' ],
+			medium:  [ '737px',   '980px'  ],
+			small:   [ '481px',   '736px'  ],
+			xsmall:  [ null,      '480px'  ],
+		});
 
-  /**
-   * Mobile nav toggle
-   */
-  on('click', '.mobile-nav-toggle', function (e) {
-    select('body').classList.toggle('mobile-nav-active')
-    this.classList.toggle('bi-list')
-    this.classList.toggle('bi-x')
-  })
+	// Play initial animations on page load.
+		$window.on('load', function() {
+			window.setTimeout(function() {
+				$body.removeClass('is-preload');
+			}, 100);
+		});
 
-  /**
-   * Scrool with ofset on links with a class name .scrollto
-   */
-  on(
-    'click',
-    '.scrollto',
-    function (e) {
-      if (select(this.hash)) {
-        e.preventDefault()
+	// Touch?
+		if (browser.mobile) {
 
-        let body = select('body')
-        if (body.classList.contains('mobile-nav-active')) {
-          body.classList.remove('mobile-nav-active')
-          let navbarToggle = select('.mobile-nav-toggle')
-          navbarToggle.classList.toggle('bi-list')
-          navbarToggle.classList.toggle('bi-x')
-        }
-        scrollto(this.hash)
-      }
-    },
-    true
-  )
+			// Turn on touch mode.
+				$body.addClass('is-touch');
 
-  /**
-   * Scroll with ofset on page load with hash links in the url
-   */
-  window.addEventListener('load', () => {
-    if (window.location.hash) {
-      if (select(window.location.hash)) {
-        scrollto(window.location.hash)
-      }
-    }
-  })
+			// Height fix (mostly for iOS).
+				window.setTimeout(function() {
+					$window.scrollTop($window.scrollTop() + 1);
+				}, 0);
 
-  /**
-   * Preloader
-   */
-  let preloader = select('#preloader')
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove()
-    })
-  }
+		}
 
-  /**
-   * Hero type effect
-   */
-  const typed = select('.typed')
-  if (typed) {
-    let typed_strings = typed.getAttribute('data-typed-items')
-    typed_strings = typed_strings.split(',')
-    new Typed('.typed', {
-      strings: typed_strings,
-      loop: true,
-      typeSpeed: 100,
-      backSpeed: 50,
-      backDelay: 2000
-    })
-  }
+	// Footer.
+		breakpoints.on('<=medium', function() {
+			$footer.insertAfter($main);
+		});
 
-  /**
-   * Skills animation
-   */
-  let skilsContent = select('.skills-content')
-  if (skilsContent) {
-    new Waypoint({
-      element: skilsContent,
-      offset: '80%',
-      handler: function (direction) {
-        let progress = select('.progress .progress-bar', true)
-        progress.forEach(el => {
-          el.style.width = el.getAttribute('aria-valuenow') + '%'
-        })
-      }
-    })
-  }
+		breakpoints.on('>medium', function() {
+			$footer.appendTo($header);
+		});
 
-  /**
-   * Porfolio isotope and filter
-   */
-  window.addEventListener('load', () => {
-    let projectContainer = select('.project-container')
-    if (projectContainer) {
-      let projectIsotope = new Isotope(projectContainer, {
-        itemSelector: '.project-item'
-      })
+	// Header.
 
-      let projectFilters = select('#project-flters li', true)
+		// Parallax background.
 
-      on(
-        'click',
-        '#project-flters li',
-        function (e) {
-          e.preventDefault()
-          projectFilters.forEach(function (el) {
-            el.classList.remove('filter-active')
-          })
-          this.classList.add('filter-active')
+			// Disable parallax on IE (smooth scrolling is jerky), and on mobile platforms (= better performance).
+				if (browser.name == 'ie'
+				||	browser.mobile)
+					settings.parallax = false;
 
-          projectIsotope.arrange({
-            filter: this.getAttribute('data-filter')
-          })
-          projectIsotope.on('arrangeComplete', function () {
-            AOS.refresh()
-          })
-        },
-        true
-      )
-    }
-  })
+			if (settings.parallax) {
 
-  /**
-   * Initiate project lightbox
-   */
-  const projectLightbox = GLightbox({
-    selector: '.project-lightbox'
-  })
+				breakpoints.on('<=medium', function() {
 
-  /**
-   * Initiate project details lightbox
-   */
-  const projectDetailsLightbox = GLightbox({
-    selector: '.project-details-lightbox',
-    width: '90%',
-    height: '90vh'
-  })
+					$window.off('scroll.strata_parallax');
+					$header.css('background-position', '');
 
-  /**
-   * project details slider
-   */
-  new Swiper('.project-details-slider', {
-    speed: 400,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  })
+				});
 
-  /**
-   * Testimonials slider
-   */
-  new Swiper('.testimonials-slider', {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    }
-  })
+				breakpoints.on('>medium', function() {
 
-  /**
-   * Animation on scroll
-   */
-  window.addEventListener('load', () => {
-    AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    })
-  })
-})()
+					$header.css('background-position', 'left 0px');
+
+					$window.on('scroll.strata_parallax', function() {
+						$header.css('background-position', 'left ' + (-1 * (parseInt($window.scrollTop()) / settings.parallaxFactor)) + 'px');
+					});
+
+				});
+
+				$window.on('load', function() {
+					$window.triggerHandler('scroll');
+				});
+
+			}
+
+	// Main Sections: Two.
+
+		// Lightbox gallery.
+			$window.on('load', function() {
+
+				$('#two').poptrox({
+					caption: function($a) { return $a.next('h3').text(); },
+					overlayColor: '#2c2c2c',
+					overlayOpacity: 0.85,
+					popupCloserText: '',
+					popupLoaderText: '',
+					selector: '.work-item a.image',
+					usePopupCaption: true,
+					usePopupDefaultStyling: false,
+					usePopupEasyClose: false,
+					usePopupNav: true,
+					windowMargin: (breakpoints.active('<=small') ? 0 : 50)
+				});
+
+			});
+
+})(jQuery);
