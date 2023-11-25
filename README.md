@@ -2,13 +2,12 @@
 
 # Portfolio Site 1.5
 
-Portfolio built with an existing template that I edited.
-[Template Here](https://bootstrapmade.com/free-html-bootstrap-template-my-resume/)
+Portfolio built with an existing template that I edited. [Template Here](https://html5up.net/strata)
 
 ## Major Funtions
 
-- contact page to get in touch with me
-- shows off any projects and experience I have
+-   contact page to get in touch with me
+-   shows off any projects and experience I have
 
 ## Dependencies
 

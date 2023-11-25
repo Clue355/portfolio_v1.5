@@ -1,0 +1,15 @@
+.spacing-below-one {
+    margin-bottom: 5rem;
+}
+
+.spacing-above-one {
+    margin-top: 1rem;
+}
+
+.font-black {
+    color: rgb(88, 82, 82);
+}
+
+.div-h {
+    height: 1rem;
+}
