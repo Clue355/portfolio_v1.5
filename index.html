@@ -122,7 +122,7 @@
                 </p>
                 <div class="row">
                     <div class="col-8 col-12-small">
-                        <form method="post" action="#">
+                        <form method="POST" action="/" data-netlify="true" name="contact" data-netlify-recaptcha="true">
                             <div class="row gtr-uniform gtr-50">
                                 <div class="col-6 col-12-xsmall">
                                     <input type="text" name="name" id="name" placeholder="Name" />
@@ -134,10 +134,12 @@
                                     <textarea name="message" id="message" placeholder="Message" rows="4"></textarea>
                                 </div>
                             </div>
+                            <ul class="actions">
+                                <li><input id="btn" type="submit" value="Send Message" target="_self" /></li>
+                            </ul>
+                            <!-- Hidden input for Netlify -->
+                            <input type="hidden" name="form-name" value="contact" />
                         </form>
-                        <ul class="actions">
-                            <li><input type="submit" value="Send Message" /></li>
-                        </ul>
                     </div>
                     <div class="col-4 col-12-small">
                         <ul class="labeled-icons">
@@ -513,5 +515,6 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
         <script src="assets/js/breakpoints.min.js"></script>
         <script src="assets/js/util.js"></script>
         <script src="assets/js/main.js"></script>
+        <script src="assets/js/custom.js"></script>
     </body>
 </html>
