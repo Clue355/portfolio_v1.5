@@ -122,7 +122,7 @@
                 </p>
                 <div class="row">
                     <div class="col-8 col-12-small">
-                        <form method="POST" action="/" data-netlify="true" name="contact" data-netlify-recaptcha="true">
+                        <form name="contact-form" method="POST" data-netlify="true" data-netlify-recaptcha="true">
                             <div class="row gtr-uniform gtr-50">
                                 <div class="col-6 col-12-xsmall">
                                     <input type="text" name="name" id="name" placeholder="Name" />
@@ -135,10 +135,10 @@
                                 </div>
                             </div>
                             <ul class="actions">
-                                <li><input id="btn" type="submit" /></li>
+                                <li><input type="submit" value="contact-form" /></li>
                             </ul>
                             <!-- Hidden input for Netlify -->
-                            <input type="hidden" name="form-name" value="contact" />
+                            <input type="hidden" name="form-name" value="contact-form" />
                         </form>
                     </div>
                     <div class="col-4 col-12-small">
