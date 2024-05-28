@@ -1911,9 +1911,9 @@ textarea {
     -webkit-appearance: none;
     -ms-appearance: none;
     appearance: none;
-    background: #dddddd;
+    background: #f8f7f7;
     border-radius: 0.35em;
-    border: solid 2px transparent;
+    border: solid 2px black;
     color: inherit;
     display: block;
     outline: 0;
@@ -2032,8 +2032,8 @@ input[type="radio"] + label:before {
 
 input[type="checkbox"]:checked + label:before,
 input[type="radio"]:checked + label:before {
-    background: #787878;
-    border-color: #787878;
+    background: #f0f0f0;
+    border-color: #000000;
     color: #fff;
     content: "\f00c";
 }
@@ -2075,7 +2075,7 @@ input[type="radio"] + label:before {
 
 .box {
     border-radius: 0.35em;
-    border: solid 2px #efefef;
+    border: solid 2px #000000;
     margin-bottom: 2em;
     padding: 1.5em;
 }
@@ -2539,7 +2539,7 @@ input[type="button"],
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
     background-color: transparent;
     border-radius: 0.35em;
-    border: solid 3px #ada4a4;
+    border: solid 2px #000000;
     color: #111111 !important;
     cursor: pointer;
     display: inline-block;
@@ -2558,8 +2558,9 @@ input[type="submit"]:hover,
 input[type="reset"]:hover,
 input[type="button"]:hover,
 .button:hover {
-    border-color: #111111;
-    color: #111111 !important;
+    border-color: #000000;
+    background-color: #001811;
+    color: #f8f6f6 !important;
 }
 
 input[type="submit"]:active,
@@ -2686,12 +2687,13 @@ input[type="button"]:disabled,
     -webkit-justify-content: space-between;
     -ms-justify-content: space-between;
     justify-content: space-between;
-    background-color: #1f1815;
     background-attachment: scroll, scroll;
-    background-image: url("images/overlay.png"), url("../../images/customImages/ethereum12.png");
+    background-image: url("images/overlay.png"), url("../../images/customImages/12.jpg");
+    background-blend-mode: darken;
+    background-color: rgba(51, 48, 48, 0.9);
     background-position: top left, top left;
     background-repeat: repeat, no-repeat;
-    background-size: auto, 150%;
+    background-size: auto, 100vw;
     color: rgba(255, 255, 255, 0.5);
     height: 100%;
     left: 0;
