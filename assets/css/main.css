@@ -1911,7 +1911,6 @@ textarea {
     -webkit-appearance: none;
     -ms-appearance: none;
     appearance: none;
-    background: #f8f7f7;
     border-radius: 0.35em;
     border: solid 2px black;
     color: inherit;
@@ -2015,7 +2014,7 @@ input[type="radio"] + label:before {
 
 input[type="checkbox"] + label:before,
 input[type="radio"] + label:before {
-    background: #f7f7f7;
+    background: #ffffff;
     border-radius: 0.35em;
     border: solid 2px transparent;
     content: "";
